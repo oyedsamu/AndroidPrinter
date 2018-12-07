@@ -16,6 +16,10 @@ class TicketBuilder(val context : Context) {
     private var ticket: StringBuilder? = null
 
     init{
+        newTicket()
+    }
+
+    fun newTicket(){
         ticket = StringBuilder()
     }
 
