@@ -78,7 +78,7 @@ class MainActivity : AppCompatActivity() {
 
             if(imageUri != null){
 
-                imgPrinter?.setImageBitmap(getImage(getBitmap(imageUri!!),200,2))
+                imgPrinter?.setImageBitmap(getImage(getBitmap(imageUri!!),300,2))
             }
 
 
