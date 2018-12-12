@@ -10,13 +10,14 @@ import com.thermalprinter.sdk.LineLabel.Companion.ALIGN_RIGHT
 import com.thermalprinter.sdk.LineLabel.Companion.SIZE_1
 import com.thermalprinter.sdk.LineLabel.Companion.SIZE_2
 import com.thermalprinter.sdk.LineLabel.Companion.SIZE_3
+import java.lang.StringBuilder
 
 class TicketBuilder(val context : Context) {
 
     private var ticket: StringBuilder? = null
 
     init{
-        newTicket()
+        ticket = StringBuilder()
     }
 
     fun newTicket(){
@@ -37,7 +38,7 @@ class TicketBuilder(val context : Context) {
         when (size) {
             SIZE_1 -> ticket?.append(LineLabel.Size1)
             SIZE_2 -> ticket?.append(LineLabel.Size2)
-            SIZE_3 -> ticket?.append(LineLabel.Size3)
+            SIZE_2 -> ticket?.append(LineLabel.Size3)
         }
         when (align) {
             ALIGN_LEFT -> ticket?.append(LineLabel.Left)
@@ -74,12 +75,17 @@ class TicketBuilder(val context : Context) {
     }
 
     fun addLeftRight(left : String, right : String){
-        ticket?.appendln("<LineLF><L>$left<L><R>$right<R><LineLF>")
+        ticket?.appendln("<LineLF>$left<->$right<LineLF>")
     }
 
     fun getTicket() : String {
         return ticket.toString()
     }
+
+    fun addImage(image : String){
+        ticket?.appendln("<Image>"+image+"<Image>")
+    }
+
 
     fun printTicket(){
         try {
