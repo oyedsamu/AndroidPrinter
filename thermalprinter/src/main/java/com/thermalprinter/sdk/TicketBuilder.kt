@@ -7,12 +7,18 @@ import android.widget.Toast
 import com.thermalprinter.sdk.LineLabel.Companion.ALIGN_CENTER
 import com.thermalprinter.sdk.LineLabel.Companion.ALIGN_LEFT
 import com.thermalprinter.sdk.LineLabel.Companion.ALIGN_RIGHT
+import com.thermalprinter.sdk.LineLabel.Companion.LINEPOINTS
+import com.thermalprinter.sdk.LineLabel.Companion.LINE_LF
+import com.thermalprinter.sdk.LineLabel.Companion.Line
 import com.thermalprinter.sdk.LineLabel.Companion.SIZE_1
 import com.thermalprinter.sdk.LineLabel.Companion.SIZE_2
 import com.thermalprinter.sdk.LineLabel.Companion.SIZE_3
 import java.lang.StringBuilder
 
 class TicketBuilder(val context : Context) {
+
+    val PACKAGE_NAME = "com.salvador.print"
+    val COMMAND_CLASS = "com.salvador.print.SendCommand"
 
     private var ticket: StringBuilder? = null
 
@@ -63,19 +69,19 @@ class TicketBuilder(val context : Context) {
 
 
     fun addQRCode(code : String){
-        ticket?.appendln("<QRCODE>$code<QRCODE>")
+        ticket?.appendln(LineLabel.QRCODE + code + LineLabel.QRCODE)
     }
 
     fun addBarCode(code : String){
-        ticket?.appendln("<BARCODE>$code<BARCODE>")
-
+        ticket?.appendln(LineLabel.BARCODE + code + LineLabel.BARCODE)
     }
+
     fun addLinePoints(){
-        ticket?.appendln("<LinePoints><LinePoints>")
+        ticket?.appendln(LINEPOINTS + LINEPOINTS)
     }
 
     fun addLeftRight(left : String, right : String){
-        ticket?.appendln("<LineLF>$left<->$right<LineLF>")
+        ticket?.appendln(LineLabel.LINE_LF + left + "<->" + right + LineLabel.LINE_LF)
     }
 
     fun getTicket() : String {
@@ -86,12 +92,10 @@ class TicketBuilder(val context : Context) {
         ticket?.appendln("<Image>"+image+"<Image>")
     }
 
-
     fun printTicket(){
         try {
             val sharingIntent = Intent(Intent.ACTION_SEND)
-            sharingIntent.setClassName("com.salvador.print",
-                    "com.salvador.print.SendCommand")
+            sharingIntent.setClassName(PACKAGE_NAME, COMMAND_CLASS)
             sharingIntent.putExtra(Intent.EXTRA_TEXT, getTicket())
             context.startActivity(sharingIntent)
         } catch (e: Exception) {

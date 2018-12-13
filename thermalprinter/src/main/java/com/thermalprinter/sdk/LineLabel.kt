@@ -28,5 +28,8 @@ class LineLabel{
 
         val QRCODE = "<QRCODE>"
         val BARCODE = "<BARCODE>"
+
+        val LINEPOINTS = "<LinePoints>"
+        val LINE_LF = "<LineLF>"
     }
 }

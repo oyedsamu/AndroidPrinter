@@ -33,18 +33,17 @@ import android.view.View
 
 class MainActivity : AppCompatActivity() {
 
-    val PICK_IMAGE = 1
+    private val PICK_IMAGE = 1
 
     private var btnHelloWorld : Button? = null
     private var btnPrintDemo : Button? = null
     private var btnPrintImage : Button? = null
     private var btnPrintQR : Button? = null
-
     private var imgPrinter : ImageView? = null
 
-    private var ticketBuilder : TicketBuilder? = null
-
     private var imagePath : String? = null
+
+    private var ticketBuilder : TicketBuilder? = null
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -53,14 +52,12 @@ class MainActivity : AppCompatActivity() {
 
         initToolbar()
         checkPermissions()
+
         btnHelloWorld = findViewById(R.id.btn_helloworld)
         btnPrintDemo = findViewById(R.id.btn_demo)
         btnPrintImage = findViewById(R.id.btn_print_image)
-
         btnPrintQR = findViewById(R.id.btn_print_qr)
-
         imgPrinter = findViewById(R.id.image2)
-
         ticketBuilder = TicketBuilder(this)
 
         imgPrinter?.setOnClickListener{
@@ -87,10 +84,6 @@ class MainActivity : AppCompatActivity() {
             ticketBuilder?.addWhiteLine()
 
             ticketBuilder?.addLeftRight("Total : ","132.00")
-
-            // ticket.addQRCode("433244")
-
-            //  ticket.addBarCode("4433443")
             ticketBuilder?.addWhiteLine()
             ticketBuilder?.addLine("Thanks",0,2)
             ticketBuilder?.addWhiteLine()
@@ -109,6 +102,8 @@ class MainActivity : AppCompatActivity() {
         btnPrintQR?.setOnClickListener{
             ticketBuilder?.newTicket()
             ticketBuilder?.addBarCode("44333223334")
+            ticketBuilder?.addWhiteLine()
+            ticketBuilder?.addWhiteLine()
             ticketBuilder?.addQRCode("www.google.com")
             ticketBuilder?.printTicket()
         }
@@ -130,14 +125,11 @@ class MainActivity : AppCompatActivity() {
 
     private fun initToolbar() {
         val toolbar = findViewById<View>(R.id.toolbar) as Toolbar
-        // toolbar.setNavigationIcon(R.drawable.ic_menu)
         setSupportActionBar(toolbar)
-        supportActionBar!!.setTitle("Printers")
-        //supportActionBar!!.setDisplayHomeAsUpEnabled(true)
+        supportActionBar!!.title = "Printer Demo"
     }
 
-
-    public fun checkPermissions(){
+    private fun checkPermissions(){
         val  permissionCheck = ContextCompat.checkSelfPermission(this,
                 Manifest.permission.READ_EXTERNAL_STORAGE)
         @TargetApi(Build.VERSION_CODES.M)
@@ -146,7 +138,6 @@ class MainActivity : AppCompatActivity() {
             //this means permission is granted and you can do read and write
         }else{
             val permissions = arrayOf(android.Manifest.permission.READ_EXTERNAL_STORAGE)
-
             requestPermissions(permissions,1001)
         }
     }
@@ -155,87 +146,21 @@ class MainActivity : AppCompatActivity() {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == PICK_IMAGE && resultCode == Activity.RESULT_OK) {
-            val imageUri = data?.getData()
-
-
-
+            val imageUri = data?.data
             if(imageUri != null){
-
                 val photo = getBitmap(imageUri)
                 imagePath =  ImageUtils.getPath(this,imageUri)
-                imgPrinter?.setImageBitmap(getImage(photo,300,2))
+                imgPrinter?.setImageBitmap(photo)
             }
         }
-    }
-
-    fun getImageUri(inContext: Context, inImage: Bitmap): Uri {
-        val bytes = ByteArrayOutputStream()
-        inImage.compress(Bitmap.CompressFormat.JPEG, 100, bytes)
-        val path = Images.Media.insertImage(inContext.contentResolver, inImage, "Title", null)
-        return Uri.parse(path)
-    }
-
-    fun getRealPathFromURI(uri: Uri): String {
-        val cursor = contentResolver.query(uri, null, null, null, null)
-        cursor!!.moveToFirst()
-        val idx = cursor.getColumnIndex(MediaStore.Images.ImageColumns.DATA)
-        return cursor.getString(idx)
-    }
-
-    fun getPath(context: Context, uri: Uri): String {
-        var result: String? = null
-        val proj = arrayOf(MediaStore.Images.Media.DATA)
-        val cursor = context.getContentResolver().query(uri, proj, null, null, null)
-        if (cursor != null) {
-            if (cursor!!.moveToFirst()) {
-                val column_index = cursor!!.getColumnIndexOrThrow(proj[0])
-                result = cursor!!.getString(column_index)
-            }
-            cursor!!.close()
-        }
-        if (result == null) {
-            result = ""
-        }
-        return result
-    }
-
-    private fun getImage(bmp : Bitmap, width : Int, mode : Int) : Bitmap{
-        val width = (width + 7) / 8 * 8
-        var height = bmp.getHeight() * width / bmp.getWidth()
-        height = (height + 7) / 8 * 8
-
-        var rszBitmap = bmp
-        rszBitmap = getResizedBitmap(bmp, width, height)
-        val fsBitmap = Utils.floydSteinbergDithering(rszBitmap)
-
-        return fsBitmap
     }
 
     private fun getBitmap(uri : Uri) : Bitmap {
-        val parcelFileDescriptor =
-                getContentResolver().openFileDescriptor(uri, "r");
-        val fileDescriptor = parcelFileDescriptor.getFileDescriptor();
-        val image = BitmapFactory.decodeFileDescriptor(fileDescriptor);
-        parcelFileDescriptor.close();
+        val parcelFileDescriptor = contentResolver.openFileDescriptor(uri, "r");
+        val fileDescriptor = parcelFileDescriptor.fileDescriptor
+        val image = BitmapFactory.decodeFileDescriptor(fileDescriptor)
+        parcelFileDescriptor.close()
         return image
     }
-
-    fun getResizedBitmap(bm: Bitmap, newWidth: Int, newHeight: Int): Bitmap {
-        val width = bm.width
-        val height = bm.height
-        val scaleWidth = newWidth.toFloat() / width
-        val scaleHeight = newHeight.toFloat() / height
-        // CREATE A MATRIX FOR THE MANIPULATION
-        val matrix = Matrix()
-        // RESIZE THE BIT MAP
-        matrix.postScale(scaleWidth, scaleHeight)
-
-        // "RECREATE" THE NEW BITMAP
-        val resizedBitmap = Bitmap.createBitmap(
-                bm, 0, 0, width, height, matrix, false)
-        bm.recycle()
-        return resizedBitmap
-    }
-
 
 }
