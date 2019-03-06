@@ -156,7 +156,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun getBitmap(uri : Uri) : Bitmap {
-        val parcelFileDescriptor = contentResolver.openFileDescriptor(uri, "r");
+        val parcelFileDescriptor = contentResolver.openFileDescriptor(uri, "r")
         val fileDescriptor = parcelFileDescriptor.fileDescriptor
         val image = BitmapFactory.decodeFileDescriptor(fileDescriptor)
         parcelFileDescriptor.close()
