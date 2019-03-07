@@ -45,6 +45,48 @@ Left Right Line.-
   ticketBuilder.addLine(string line, size : int, align : int)
 ```
 
+Print QR and BarCode.
+
+```
+  ticketBuilder?.addBarCode(code : string)
+  ticketBuilder?.addQRCode(qrcode : string)
+```
+
+Send to printer.
+
+```
+  ticketBuilder.printTicket();
+```
+
+
+Example 
+```
+   var ticketBuilder = TicketBuilder(this)
+   
+    ticketBuilder.newTicket()
+    ticketBuilder.addLine("Thermal Printer",2,2)
+    ticketBuilder.addLine("Ticket #234",0,2)
+    ticketBuilder.addWhiteLine()
+
+    ticketBuilder.addLeftRight("10:32","05/12/18")
+    ticketBuilder.addWhiteLine()
+    ticketBuilder.addLinePoints()
+    ticketBuilder.addLeftRight("Product 1","10.00")
+    ticketBuilder.addLeftRight("Product 2","5.00")
+    ticketBuilder.addLeftRight("Product 3","65.00")
+    ticketBuilder.addLeftRight("Product 4","43.00")
+    ticketBuilder.addLinePoints()
+    ticketBuilder.addWhiteLine()
+
+    ticketBuilder.addLeftRight("Total : ","132.00")
+    ticketBuilder.addWhiteLine()
+    ticketBuilder.addLine("Thanks",0,2)
+    ticketBuilder.addWhiteLine()
+    ticketBuilder.addWhiteLine()
+    ticketBuilder.addWhiteLine()
+
+```
+
 
 
 
