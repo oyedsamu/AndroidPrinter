@@ -6,7 +6,7 @@ POS/ESC Android Printer
 
 ## Getting Started
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
+This is a guide to implement connection to an app service in your app, it can print tickets or anything you want in thermal printer's with connection Bluetooth, Wifi or USB.
 
 ## Import to proyect
 
