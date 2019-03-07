@@ -58,6 +58,7 @@ Send to printer.
   ticketBuilder.printTicket();
 ```
 
+Note.- You need be sure that have printer already connected in the Thermal Printer App.
 
 Example 
 ```
@@ -86,6 +87,10 @@ Example
     ticketBuilder.addWhiteLine()
 
 ```
+
+Example Result.
+
+
 
 
 
