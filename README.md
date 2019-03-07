@@ -11,6 +11,7 @@ These instructions will get you a copy of the project up and running on your loc
 ## Import to proyect
 
 Add line to Gradle.
+
 ```
     implementation 'com.salvador.printer:app:1.0.0'
 ```
@@ -23,6 +24,17 @@ First initialize the TicketBuilder.
   var ticketBuilder = TicketBuilder(this)
 ```
 
+Every time to need clean de ticket.-
+
+```
+  ticketBuilder.newTicket();
+```
+
+Add line to ticket.
+
+```
+  ticketBuilder.addLine
+```
 
 
 
