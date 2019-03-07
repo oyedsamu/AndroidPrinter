@@ -62,7 +62,7 @@ Note.- You need be sure that have printer already connected in the Thermal Print
 
 Example 
 ```
-   var ticketBuilder = TicketBuilder(this)
+    var ticketBuilder = TicketBuilder(this)
    
     ticketBuilder.newTicket()
     ticketBuilder.addLine("Thermal Printer",2,2)
@@ -90,8 +90,7 @@ Example
 
 Example Result.
 
-
-
+<img src="https://raw.githubusercontent.com/salvadordeveloper/AndroidPrinter/master/screenshots/test.jpg" width="250" height="250"/>
 
 
 
