@@ -73,6 +73,7 @@ class MainActivity : AppCompatActivity() {
             ticketBuilder?.addLine("Ticket #234",0,2)
             ticketBuilder?.addWhiteLine()
 
+
             ticketBuilder?.addLeftRight("10:32","05/12/18")
             ticketBuilder?.addWhiteLine()
             ticketBuilder?.addLinePoints()
