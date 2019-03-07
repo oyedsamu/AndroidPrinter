@@ -32,9 +32,22 @@ Every time to need clean de ticket.-
 
 Add line to ticket.
 
+
 ```
-  ticketBuilder.addLine
+  //Size : Size1, Size2, Size3
+  //Align : Center, Left, Right
+  ticketBuilder.addLine(string line, size : int, align : int)
 ```
+
+Left Right Line.-
+
+```
+  ticketBuilder.addLine(string line, size : int, align : int)
+```
+
+
+
+
 
 
 
