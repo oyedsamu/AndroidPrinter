@@ -14,7 +14,7 @@ To use this library you need install the app.
 
 <img src="https://raw.githubusercontent.com/salvadordeveloper/AndroidPrinter/master/screenshots/download.png"
 href="https://play.google.com/store/apps/details?id=com.salvador.print"
-width="250" height="80"/>
+width="250" height="70"/>
 
 ## Import to proyect
 
