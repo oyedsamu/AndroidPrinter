@@ -12,9 +12,10 @@ This is a guide to implement connection to an app service in your app, it can pr
 
 To use this library you need install the app.
 
-<img src="https://raw.githubusercontent.com/salvadordeveloper/AndroidPrinter/master/screenshots/download.png"
-href="https://play.google.com/store/apps/details?id=com.salvador.print"
-width="250" height="70"/>
+
+<a href="https://play.google.com/store/apps/details?id=com.salvador.print"><img src="https://raw.githubusercontent.com/salvadordeveloper/AndroidPrinter/master/screenshots/download.png"
+width="250" height="70"/> </a>
+
 
 ## Import to proyect
 
