@@ -3,28 +3,6 @@ apply plugin: 'kotlin-android'
 
 apply plugin: 'com.novoda.bintray-release' // must be applied after your artifact generating plugin (eg. java / com.android.library)
 
-ext {
-    bintrayRepo = 'AndroidPrint'
-    bintrayName = 'com.salvador.printer'
-
-    publishedGroupId = 'com.salvador.printer'
-    libraryName = 'Android Print'
-    artifact = 'app'
-    libraryVersion = '1.0.0'
-
-    libraryDescription = 'Android Printer'
-
-    siteUrl = 'https://github.com/salvadordeveloper/AndroidPrinter'
-    gitUrl = 'https://github.com/salvadordeveloper/AndroidPrinter.git'
-
-    developerId = 'salvadordeveloper'
-    developerName = 'Salvador Valverde'
-    developerEmail = 'salvadorvalverde0@gmail.com'
-
-    licenseName = 'The Apache Software License, Version 2.0'
-    licenseUrl = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
-    allLicenses = ["Apache-2.0"]
-}
 
 publish {
     userOrg = 'salvadordeveloper'
@@ -33,7 +11,7 @@ publish {
     artifactId = 'printer'
     publishVersion = '1.0.1'
     desc = 'Thermal Printer'
-    website = 'https://github.com/novoda/bintray-release'
+    website = 'https://github.com/salvadordeveloper/AndroidPrinter'
 }
 
 android {
