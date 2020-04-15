@@ -35,6 +35,7 @@ class MainActivity : AppCompatActivity() {
 
     private val PICK_IMAGE = 1
 
+
     private var btnHelloWorld : Button? = null
     private var btnPrintDemo : Button? = null
     private var btnPrintImage : Button? = null
